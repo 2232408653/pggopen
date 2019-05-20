@@ -1,0 +1,2 @@
+<!--miniprogram/pages/index/index.wxml-->
+<button bindtap='getIMG'>上传图片</button>
