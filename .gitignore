@@ -12,3 +12,9 @@ $RECYCLE.BIN/
 
 # Node.js
 node_modules/
+git clone git@git.weixin.qq.com:pgg/pgg12190520.git
+cd pgg12190520
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
