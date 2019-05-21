@@ -80,24 +80,24 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    wx.getUserInfo({
-      success(m) {
-        db.collection("uesrinfo").where({
-          _openid: getApp().globalData.login
-        }).get({
-          success(e){
-            //console.log(e)
-            //console.log(app.globalData.login)
-            if(e.data.length==0)
-              db.collection("uesrinfo").add({
-                data: m
-              })
-            return
-          }
-        })
-        //console.log(m)
-      }
-    })
+    // wx.getUserInfo({
+    //   success(m) {
+    //     db.collection("uesrinfo").where({
+    //       _openid: getApp().globalData.login
+    //     }).get({
+    //       success(e){
+    //         //console.log(e)
+    //         //console.log(app.globalData.login)
+    //         if(e.data.length==0)
+    //           db.collection("uesrinfo").add({
+    //             data: m
+    //           })
+    //         return
+    //       }
+    //     })
+    //     //console.log(m)
+    //   }
+    // })
   },
 
   /**
@@ -149,7 +149,7 @@ Page({
           title: '欢迎使用本小程序',
         })
         //console.log(m)
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../index/index',
         })
       },
