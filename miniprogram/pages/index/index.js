@@ -1,5 +1,6 @@
 // miniprogram/pages/index/index.js
 const app = getApp() //获取全局数据
+var userDB = "tempUser"
 var login
 var mytime
 var myDate = new Date();
@@ -35,40 +36,87 @@ Page({
         getApp().globalData.login = res.result.openid
         //console.log(getApp().globalData.login)
         login = getApp().globalData.login
-        wx.getUserInfo({
-          success(m) {
-            db.collection("tempUser").where({
-              //如果在云开发的数据库中将一个集合设置为仅创建者可读写,则_openid参数无效直接为申请人使用人的openid
-              _openid: "abc"//getApp().globalData.login
-            }).get({
-              success(e) {
-                console.log(e)
-                //console.log(app.globalData.login)
-                if (e.data.length == 0)
-                  db.collection("tempUser").add({
+        db.collection(userDB).get({
+          success(e) {
+            console.log(e.data)
+            if (e.data.length > 1) {
+              console.log("x")
+              wx.showToast({
+                title: '欢迎使用',
+              })
+              return
+            } else {
+              wx.getUserInfo({
+                success(m) {
+                  m.nickName = m.userInfo.nickName
+                  m.avatarUrl = m.userInfo.avatarUrl
+                  console.log(m)
+                  db.collection(userDB).add({
                     data: m
                   })
-              }
-            })
-            wx.showToast({
-              title: '欢迎使用本小程序',
-            })
-            //console.log(m)
-          },
-          fail(e) {
-            wx.showLoading({
-              title: '请授予权限',
-            })
-            setTimeout(function() {
-              wx.hideLoading()
-            }, 1500)
-            wx.redirectTo({
-              url: '../login/login',
-            })
+                },
+                fail(e) {
+                  wx.showLoading({
+                    title: '请注册',
+                  })
+                  setTimeout(function() {
+                    wx.hideLoading()
+                    wx.navigateTo({
+                      url: '../login/login',
+                    })
+                  }, 500)
+                  // wx.redirectTo({
+                  //   url: '../login/login',
+                  // })
+                  
+                }
+              })
+
+            }
           }
         })
+        //修改登录验证设置,允许不进行登录,直接使用本系统
+        // wx.getUserInfo({
+        //   success(m) {
+        //     m.nickName=m.userInfo.nickName
+        //     m.avatarUrl = m.userInfo.avatarUrl
+        //     console.log(m.userInfo.nickName)
+        //     db.collection("tempUser").where({
+        //       //如果在云开发的数据库中将一个集合设置为仅创建者可读写,则_openid参数无效直接为申请人使用的openid
+        //       //_openid: "abc"//getApp().globalData.login
+        //     }).get({
+        //       success(e) {
+        //         console.log(e)
+        //         //console.log(app.globalData.login)
+        //         if (e.data.length == 0)
+        //           db.collection("tempUser").add({
+        //             data: m
+        //           })
+        //       }
+        //     })
+        //     wx.showToast({
+        //       title: '欢迎使用本小程序',
+        //     })
+        //     //console.log(m)
+        //   },
+        //   fail(e) {
+        //     wx.showLoading({
+        //       title: '请授予权限',
+        //     })
+        //     setTimeout(function() {
+        //       wx.hideLoading()
+        //     }, 1500)
+        //     wx.redirectTo({
+        //       url: '../login/login',
+        //     })
+        //   }
+        // })
+
       }
     })
+    // wx.showToast({
+    //   title: '欢迎使用',
+    // })
 
   },
 
@@ -141,10 +189,10 @@ Page({
     // var mytime = myDate.toLocaleTimeString();     //获取当前时间
     // myDate.toLocaleString();        //获取日期与时间
     //time = time.replace(/\s+/g, "");//去掉所有空格
-    var year=myDate.getFullYear()
-    var month=myDate.getMonth()+1
+    var year = myDate.getFullYear()
+    var month = myDate.getMonth() + 1
     var second = myDate.getTime()
-    var time=year+"/"+month+"/"+second+"/"
+    var time = year + "/" + month + "/" + second + "/"
 
     //console.log(mytime)
     wx.chooseImage({
@@ -165,7 +213,7 @@ Page({
                 time: myDate.toLocaleDateString() + '/' + time,
                 fileID: res.fileID
               },
-              success(res){
+              success(res) {
                 wx.navigateTo({
                   url: '../show/show',
                 })
@@ -208,7 +256,7 @@ Page({
       },
     })
   },
-  gotoshow:function(){
+  gotoshow: function() {
     wx.navigateTo({
       url: '../show/show',
       success: function(res) {},
