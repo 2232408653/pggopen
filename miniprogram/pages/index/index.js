@@ -31,7 +31,7 @@ Page({
             title: '无网络/其他状况',
           })
           return
-          }
+        }
         getApp().globalData.login = res.result.openid
         //console.log(getApp().globalData.login)
         login = getApp().globalData.login
@@ -120,24 +120,80 @@ Page({
 
   },
   getIMG: function() {
+    var myDate = new Date(); //不能在初始化是将time固定,要不然会造成一些错误
     var that = this
-    var mytime = myDate.toLocaleDateString()
-    var time = myDate.toLocaleTimeString()
+    // var mytime = myDate.toLocaleDateString()
+    // var time = myDate.toLocaleString('chinese', { hour12: false });
+    // time=time.trim()//去空格
+    // var myDate = new Date();
+    // myDate.getYear();        //获取当前年份(2位)
+    // myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+    // myDate.getMonth();       //获取当前月份(0-11,0代表1月)
+    // myDate.getDate();        //获取当前日(1-31)
+    // myDate.getDay();         //获取当前星期X(0-6,0代表星期天)
+    // myDate.getTime();        //获取当前时间(从1970.1.1开始的毫秒数)
+    // myDate.getHours();       //获取当前小时数(0-23)
+    // myDate.getMinutes();     //获取当前分钟数(0-59)
+    // myDate.getSeconds();     //获取当前秒数(0-59)
+    // myDate.getMilliseconds();    //获取当前毫秒数(0-999)
+    // myDate.toLocaleDateString();     //获取当前日期
+    // var mytime = myDate.toLocaleTimeString();     //获取当前时间
+    // myDate.toLocaleString();        //获取日期与时间
+    //time = time.replace(/\s+/g, "");//去掉所有空格
+    var year=myDate.getFullYear()
+    var month=myDate.getMonth()+1
+    var second = myDate.getTime()
+    var time=year+"/"+month+"/"+second+"/"
 
-    console.log(mytime)
+    //console.log(mytime)
     wx.chooseImage({
       success: function(res) {
-        console.log(res)
+        //console.log(res)
         var tempFilePaths = res.tempFilePaths[0]
-        console.log(tempFilePaths)
+        //console.log(tempFilePaths)
         wx.cloud.uploadFile({
-          cloudPath: login + "/" + myDate.toLocaleDateString() + '/' + time + tempFilePaths.slice(-8),
+          cloudPath: login + "/" + time + tempFilePaths.slice(-8),
           filePath: tempFilePaths, // 文件路径
           success: res => {
             // get resource ID
-            //console.log(res.fileID)
+            console.log(time)
+            console.log(res)
+            console.log(res.fileID)
+            db.collection("imginfo").add({
+              data: {
+                time: myDate.toLocaleDateString() + '/' + time,
+                fileID: res.fileID
+              },
+              success(res){
+                wx.navigateTo({
+                  url: '../show/show',
+                })
+              }
+            })
+            //temp2=res.fileID
+            //获得的是文件id,不可以直接使用,必须获得临时文件才可以使用
+            // var urls
+            // urls[0]=res.fileID
+            // tempFilePaths=wx.previewImage({
+            //   urls:urls
+            // })
+            // wx.cloud.getTempFileURL({
+            //   fileList: [{
+            //     fileID: res.fileID,
+            //     maxAge: 60 * 60, // one hour
+            //   }]
+            // }).then(res => {
+            //   // get temp file URL
+            //   temp = res.fileList
+            //   console.log(res.fileList)
+            //   //console.log(temp.length)
+            //   console.log(temp[0].fileID)
+
+            // }).catch(error => {
+            //   // handle error
+            // })
             that.setData({
-              imgsrc: tempFilePaths
+              imgsrc: tempFilePaths //res.fileID
             })
             wx.showToast({
               title: '添加成功',
@@ -149,6 +205,14 @@ Page({
           }
         })
       },
+    })
+  },
+  gotoshow:function(){
+    wx.navigateTo({
+      url: '../show/show',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
     })
   }
 })

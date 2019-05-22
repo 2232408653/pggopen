@@ -1,3 +1,10 @@
 <!--miniprogram/pages/index/index.wxml-->
 <button bindtap='getIMG'>上传图片</button>
 <image src='{{imgsrc}}'></image>
+<button bindtap="gotoshow">展示界面</button>
+<text>Design By DingShuo</text>
+<view>
+<text>如果有兴趣体验最新体验版(微信审核需要时间),有建议,可以与我联系QQ:1518501960,Wechat:ding-1008611</text>
+</view>
+<view>本项目开源</view>
+<view>Link:https://git.weixin.qq.com/pgg/pggopen</view>
