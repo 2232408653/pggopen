@@ -37,14 +37,15 @@ Page({
         login = getApp().globalData.login
         wx.getUserInfo({
           success(m) {
-            db.collection("uesrinfo").where({
-              _openid: getApp().globalData.login
+            db.collection("tempUser").where({
+              //如果在云开发的数据库中将一个集合设置为仅创建者可读写,则_openid参数无效直接为申请人使用人的openid
+              _openid: "abc"//getApp().globalData.login
             }).get({
               success(e) {
-                //console.log(e)
+                console.log(e)
                 //console.log(app.globalData.login)
                 if (e.data.length == 0)
-                  db.collection("uesrinfo").add({
+                  db.collection("tempUser").add({
                     data: m
                   })
               }
