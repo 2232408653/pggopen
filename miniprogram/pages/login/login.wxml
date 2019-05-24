@@ -1,3 +1,4 @@
+<view>下面是个按钮</view>
 <button open-type="getUserInfo" bindtap="click">直接使用微信注册</button>
 <textarea>
 直接使用微信进行注册,获取的信息为微信的昵称及其他不重要的信息,省事,方便
