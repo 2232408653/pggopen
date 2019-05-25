@@ -9,7 +9,8 @@
 <view>本项目开源</view>
 <view>
   <text>微信</text>
-  <input value='https://git.weixin.qq.com/2232408653/pggopen.git'></input>
+  <input value="{{wxOpenUrl}}"></input>
   <text>github</text>
-  <input value='https://github.com/2232408653/pggopen'></input>
+  <input value="{{gitopenUrl}}"></input>
+  <textarea>{{myword}}</textarea>
 </view>

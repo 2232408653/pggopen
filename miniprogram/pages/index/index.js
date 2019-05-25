@@ -17,7 +17,10 @@ Page({
         "url": null
       }
     },
-    imgsrc: null
+    imgsrc: null,
+    wxOpenUrl: 'https://git.weixin.qq.com/2232408653/pggopen.git',
+    gitopenUrl: 'https://github.com/2232408653/pggopen',
+    myword:"欢迎使用本小程序,一直在更新"
   },
 
   /**
@@ -124,14 +127,27 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    var that = this
+    //用云开发数据库进行判断,来实时跟新数据,不写死
+    db.collection("msg").where({
+      _id: "82bb4616-437f-4168-acdd-f8a34a877c16"
+    }).get({
+      success(e) {
+        console.log(e)
+        that.setData({
+          gitopenUrl: e.data[0].gitopenUrl,
+          wxOpenUrl: e.data[0].wxOpenUrl,
+          myword: e.data[0].myword
+        })
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    
   },
 
   /**
