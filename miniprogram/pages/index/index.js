@@ -17,10 +17,12 @@ Page({
         "url": null
       }
     },
-    imgsrc: null,
+    adImgSrc: "cloud://wxx-dbbe2f.7778-wxx-dbbe2f/ad2.PNG",
     wxOpenUrl: 'https://git.weixin.qq.com/2232408653/pggopen.git',
     gitopenUrl: 'https://github.com/2232408653/pggopen',
-    myword:"欢迎使用本小程序,一直在更新"
+    myword:"欢迎使用本小程序,一直在更新",
+    experienceVersion:null,
+    version:null
   },
 
   /**
@@ -137,7 +139,10 @@ Page({
         that.setData({
           gitopenUrl: e.data[0].gitopenUrl,
           wxOpenUrl: e.data[0].wxOpenUrl,
-          myword: e.data[0].myword
+          myword: e.data[0].myword,
+          version: e.data[0].version,
+          experienceVersion: e.data[0].experienceVersion,
+          adImgSrc: e.data[0].adImgSrc
         })
       }
     })
@@ -257,9 +262,9 @@ Page({
             // }).catch(error => {
             //   // handle error
             // })
-            that.setData({
-              imgsrc: tempFilePaths //res.fileID
-            })
+            // that.setData({
+            //   imgsrc: tempFilePaths //res.fileID
+            // })
             wx.showToast({
               title: '添加成功',
             })
