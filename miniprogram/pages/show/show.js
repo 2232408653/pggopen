@@ -131,5 +131,14 @@ Page({
       fail: function (res) { },
       complete: function (res) { },
     })
+  },
+  setImg:function(e){
+    console.log(e)
+    wx.navigateTo({
+      url: "imgInfo/imgInfo?id="+e.target.id,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   }
 })

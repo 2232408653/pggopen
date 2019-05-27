@@ -1,9 +1,8 @@
-<view><text>本界面功能为展示用户已上传的图片</text></view>
+<view><text>本界面功能为展示用户已上传的图片,图片可以点击,进入图片操作界面</text></view>
 <view wx:for="{{imgurls}}" wx:for-item="itemName">
 <!-- <text>{{itemName.fileID}}</text> -->
 <!-- <image src="{{itemName.tempFileURL}}"></image> -->
-<image src="{{itemName.fileID}}"></image>
-
+<image src="{{itemName.fileID}}" bindtap='setImg' id='{{itemName.fileID}}'></image>
 </view>
 <button bindtap='gotoindex'>回到添加界面</button>
 <text>暂时没样式,随意看看吧,本次添加了自己已上传界面,之后将会添加分享等功能</text>

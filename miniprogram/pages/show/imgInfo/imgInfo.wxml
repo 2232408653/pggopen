@@ -1,0 +1,5 @@
+<!--miniprogram/pages/show/imgInfo/imgInfo.wxml-->
+<text>这是个改变图片的页面,将会添加两个按钮,一个删除,一个分享</text>
+<image src="{{imgid}}" wx:if='{{imgid!=null}}'></image>
+<button bindtap='delImg'>删除图片</button>
+<button bindtap='shareImg'>分享图片</button>

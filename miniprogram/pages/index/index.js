@@ -1,6 +1,6 @@
 // miniprogram/pages/index/index.js
 const app = getApp() //获取全局数据
-var userDB = "tempUser"
+var userDB = "uesrinfo"
 var login
 var mytime
 var myDate = new Date();
@@ -44,7 +44,7 @@ Page({
         db.collection(userDB).get({
           success(e) {
             console.log(e.data)
-            if (e.data.length > 1) {
+            if (e.data.length > 0) {//只有有数据即可
               console.log("x")
               wx.showToast({
                 title: '欢迎使用',

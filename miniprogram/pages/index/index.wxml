@@ -1,6 +1,6 @@
 <!--miniprogram/pages/index/index.wxml-->
 <button bindtap='getIMG'>上传图片</button>
-<image src='{{adImgSrc}}'></image>
+<image src='{{adImgSrc}}' mode='center'></image>
 <button bindtap="gotoshow">展示界面</button>
 <text>Design By DingShuo</text>
 <view>
@@ -12,10 +12,11 @@
   <input value="{{wxOpenUrl}}"></input>
   <text>github</text>
   <input value="{{gitopenUrl}}"></input>
+  <view>
   开发者寄语
-  <text>{{myword}}</text>
+  <text>{{myword}}</text> </view>
   正式版本:
-  <text>{{version}}</text>
+  <text>{{version}}</text> 
   体验版版本:
   <text>{{experienceVersion}}</text>
 </view>
