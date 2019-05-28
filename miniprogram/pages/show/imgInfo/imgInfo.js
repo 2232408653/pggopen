@@ -1,5 +1,7 @@
 // miniprogram/pages/show/imgInfo/imgInfo.js
-var imgid
+var imgInfoID
+const db = wx.cloud.database()
+const app = getApp()
 Page({
 
   /**
@@ -13,18 +15,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    //var imgInfoID
+    var that = this
     console.log(options)
-    imgid = options.id
-
+    imgInfoID = options.id
+    db.collection("imginfo").where({
+      _id: imgInfoID
+    }).get({
+      success(e) {
+        console.log(e.data)
+        if (e.data.length == 0) {
+          wx.showToast({
+            title: '更新后未添加图片',
+          })
+        }
+        that.setData({
+          imgid: e.data[0].fileID
+        })
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    this.setData({
-      imgid: imgid
-    })
 
   },
 
@@ -69,7 +84,7 @@ Page({
   onShareAppMessage: function() {
 
   },
-  delImg: function() {
+  delImg: function(e) {
     wx.showModal({
       title: '确定删除吗?',
       content: '',
@@ -79,12 +94,45 @@ Page({
       confirmText: '取消',
       confirmColor: 'red',
       success: function(res) {
-        console.log(res==true)
-        if (res.cancel)
+        //console.log(res == true)
+        if (res.cancel) {
           wx.showToast({
-            title: '暂时没开发',
+            title: '开发中',
           })
-        else
+          db.collection('imginfo').doc(imgInfoID).remove({
+            success: res => {
+              wx.showToast({
+                title: '删除成功',
+              })
+              // this.setData({
+              //   counterId: '',
+              //   count: null,
+              // })
+              wx.redirectTo({
+                url: '../show',
+              })
+            },
+            fail: err => {
+              wx.showToast({
+                icon: 'none',
+                title: '删除失败',
+              })
+              console.error('[数据库] [删除记录] 失败：', err)
+            }
+          })
+          // db.collection('tempimginfo').doc('57896b495cea3f3005d86f536eb1242d'|1).get({
+          //   success: function (res) {
+          //     console.log(res.data)
+          //   }
+          // })
+          // db.collection('tempimginfo').doc(
+          //   '57896b495cea3f3005d86f536eb1242d'
+          // ).get({
+          //   success(res){
+          //     console.log(res)
+          //   }
+          // })
+        } else
           wx.showToast({
             title: '再想想吧',
           })
@@ -96,7 +144,7 @@ Page({
       complete: function(res) {},
     })
   },
-  shareImg:function(){
+  shareImg: function() {
     wx.showToast({
       title: '暂时没开发',
     })
