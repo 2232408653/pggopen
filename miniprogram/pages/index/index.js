@@ -17,12 +17,14 @@ Page({
         "url": null
       }
     },
-    adImgSrc: "cloud://wxx-dbbe2f.7778-wxx-dbbe2f/ad2.PNG",
+    adImgSrc:null,
+    //adImgSrc: "cloud://wxx-dbbe2f.7778-wxx-dbbe2f/ad2.PNG",
     wxOpenUrl: 'https://git.weixin.qq.com/2232408653/pggopen.git',
     gitopenUrl: 'https://github.com/2232408653/pggopen',
     myword:"欢迎使用本小程序,一直在更新",
     experienceVersion:null,
-    version:null
+    version:null,
+    qqGroupUrl:"点击链接加入群聊【皮果果粉丝群】：https://jq.qq.com/?_wv=1027&k=5ZF5LZK"
   },
 
   /**
