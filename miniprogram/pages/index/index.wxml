@@ -1,0 +1,23 @@
+<!--miniprogram/pages/index/index.wxml-->
+<!-- <button bindtap='getIMG'>上传图片</button> -->
+<view>小程序简介</view>
+<!-- <image src='{{adImgSrc}}' mode='center'></image> -->
+<button bindtap="gotoshow">展示界面</button>
+<text>Design By DingShuo</text>
+<view>
+  <text>如果有兴趣体验最新体验版(微信审核需要时间),有建议,可以与我联系QQ:1518501960,Wechat:ding-1008611</text>
+</view>
+<view>本项目开源</view>
+<view>
+  <text>微信</text>
+  <input value="{{wxOpenUrl}}"></input>
+  <text>github</text>
+  <input value="{{gitopenUrl}}"></input>
+  <view>
+  开发者寄语
+  <text>{{myword}}</text> </view>
+  正式版本:
+  <text>{{version}}</text> 
+  体验版版本:
+  <text>{{experienceVersion}}</text>
+</view>
