@@ -1,0 +1,14 @@
+<!--miniprogram/pages/myMoney/myMoney.wxml-->
+<text>记账小功能</text>
+<view>
+成本(元/页)
+<input value='{{cost}}' type='digit' bindinput='setProfitByCost'></input>
+页数
+<input value="{{num}}" type='num' bindinput='setProfitBynum'></input>
+单价(元/页)
+<input value="{{price}}" type='digit' bindinput='setProfitByPrice'></input>
+净利润(元)
+<input value='{{netProfit}}'></input>
+时间
+<input value='{{time}}'></input>
+</view>

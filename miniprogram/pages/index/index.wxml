@@ -8,8 +8,8 @@
 <view>
   <text>如果有兴趣体验最新体验版(微信审核需要时间),有建议,可以与我联系QQ:1518501960,Wechat:ding-1008611</text>
 </view>
-<text>有打印需求(江科大张家港)可以进入群聊</text>
-  <input value="https://jq.qq.com/?_wv=1027&k=5ZF5LZK"></input>
+<!-- <text>有打印需求(江科大张家港)可以进入群聊</text>
+  <input value="https://jq.qq.com/?_wv=1027&k=5ZF5LZK"></input> -->
   <!-- <textarea value="{{qqGroupUrl}}"></textarea>
   <navigator url='https://jq.qq.com/?_wv=1027&k=5ZF5LZK'>sss</navigator> -->
 <view>本项目开源</view>

@@ -1,6 +1,9 @@
 // miniprogram/pages/login/login.js
+var nickName
+var userDB = "uesrinfo"
 const db = wx.cloud.database()
 const app = getApp() //获取全局数据
+var m={}
 //var loginName = getApp().globalData.login
 Page({
 
@@ -14,14 +17,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    
+  onLoad: function(options) {
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
     wx.cloud.callFunction({
       name: 'login',
       complete: res => {
@@ -72,14 +75,14 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
     // wx.getUserInfo({
     //   success(m) {
     //     db.collection("uesrinfo").where({
@@ -103,31 +106,31 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-    
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
-  click:function(e){
+  click: function(e) {
     // wx.showToast({
     //   title: '欢迎使用本小程序',
     // })
@@ -153,11 +156,41 @@ Page({
           url: '../index/index',
         })
       },
-      fail(e){
+      fail(e) {
 
       }
 
     })
+
+  },
+  setNickName: function(e) {
+    //console.log(e)
+    nickName = e.detail.value
+    //console.log(nickName)
+  },
+  zc: function() {
+    //console.log(nickName)
+    if (!nickName) {
+      wx.showToast({
+        title: '请输入用户名',
+        icon: 'fail'
+      })
+      return
+    }
+    console.log("xx")
     
+    m.nickName = nickName
+    m.avatarUrl = null
+    //console.log(m)
+    db.collection(userDB).add({
+      data: m
+    })
+    wx.showToast({
+      title: '欢迎使用本小程序',
+    })
+    //console.log(m)
+    wx.redirectTo({
+      url: '../index/index',
+    })
   }
 })

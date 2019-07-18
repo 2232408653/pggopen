@@ -1,16 +1,20 @@
 {
   "pages": [
+    
     "pages/index/index",
     "pages/publicimg/publicimg",
     "pages/show/show",
     "pages/login/login",
-    "pages/show/imgInfo/imgInfo"
+    "pages/show/imgInfo/imgInfo",
+    "pages/setMoney/setMoney",
+    "pages/myMoney/myMoney"
+    
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "皮果果Print",
+    "navigationBarTitleText": "皮果果",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"

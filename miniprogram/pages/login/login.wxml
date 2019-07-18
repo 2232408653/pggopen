@@ -3,8 +3,8 @@
 <textarea>
 直接使用微信进行注册,获取的信息为微信的昵称及其他不重要的信息,省事,方便
 </textarea>
-<form submit='zhuce'>
-姓名<input id="nickName" placeholder='请输入昵称'></input>
+昵称<input id="nickName" placeholder='请输入昵称' bindinput="setNickName"></input>
 <!-- 头像<input id='imgURL'></input> -->
-<button type='subimt'>该按钮暂时不可用</button>
-</form>
+<button bindtap="zc">注册</button>
+
+
